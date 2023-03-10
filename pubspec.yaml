@@ -28,6 +28,7 @@ dependencies:
   file_picker: ^5.2.5
   open_file: ^3.2.1
   url_launcher: ^6.1.10
+  flutter_tts: ^3.6.3
 
 dev_dependencies:
   flutter_test:
@@ -83,4 +84,3 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 dependency_overrides:
   ffi: ^2.0.1
-

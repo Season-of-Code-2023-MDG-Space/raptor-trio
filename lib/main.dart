@@ -8,6 +8,3 @@ void main() {
         home: HomePage(),
       ));
 }
-
-
-
