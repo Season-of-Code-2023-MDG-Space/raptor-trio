@@ -1,6 +1,6 @@
-import 'package:DocuFind/utils/read_aloud.dart';
-import 'package:DocuFind/utils/utils.dart';
-import 'package:DocuFind/widgets/overlay_button.dart';
+import 'package:docufind/utils/read_aloud.dart';
+import 'package:docufind/utils/utils.dart';
+import 'package:docufind/widgets/overlay_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -17,7 +17,7 @@ OverlayEntry showContextMenu(
     launchUrl_(generateGoogleSearchUrl(details.selectedText.toString()));
   }
   void readAloudSelectedText(details) {
-    readAloud(details.selectedText.toString());
+    readAloud(context, details.selectedText.toString());
   }
 
 

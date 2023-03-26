@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import 'package:DocuFind/utils/constants.dart';
+import 'package:docufind/utils/constants.dart';
 
 class OverLayButton extends StatelessWidget implements PreferredSizeWidget {
   final String text;

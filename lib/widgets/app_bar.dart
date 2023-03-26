@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:DocuFind/utils/constants.dart';
+import 'package:docufind/utils/constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
         Key? key,
         this.title = "",
         this.leadingIcon = null,
-        this.actions = const []
+        this.actions = const [],
       }
   ) : super(key: key);
 
@@ -25,6 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       title: Text(title, style: Constants.textStyle,),
       actions: actions,
       backgroundColor: Constants.appBarColor,
+      automaticallyImplyLeading: false,
     );
   }
 }

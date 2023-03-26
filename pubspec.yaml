@@ -1,4 +1,4 @@
-name: DocuFind
+name: docufind
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite: ^2.0.0+3
+  file:
   flutter_pdfview: ^1.2.1
   filesystem_picker: ^3.0.0
   syncfusion_flutter_pdfviewer: ^20.4.50

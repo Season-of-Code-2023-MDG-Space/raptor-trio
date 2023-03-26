@@ -46,3 +46,4 @@ lib/firebase_options.dart
 
 # Specifically exclude
 /assets/veil.pdf
+/lib/utils/ocr.dart

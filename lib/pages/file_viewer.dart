@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:DocuFind/utils/navigation.dart';
-import 'package:DocuFind/utils/search.dart';
-import 'package:DocuFind/utils/overlay.dart';
+import 'package:docufind/utils/navigation.dart';
+import 'package:docufind/utils/search.dart';
+import 'package:docufind/utils/overlay.dart';
 
 /// Represents Homepage for Navigation
 class FileViewerPage extends StatefulWidget {
-  final FilePickerResult fileName;
+  final String fileName;
   const FileViewerPage({Key? key, required this.fileName}) : super(key: key);
   @override
   _FileViewerPage createState() =>  _FileViewerPage();
@@ -18,7 +19,7 @@ class FileViewerPage extends StatefulWidget {
 class _FileViewerPage extends State<FileViewerPage> {
   // final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   var fileViewer;
-  OverlayEntry? _overlayEntry;
+  OverlayEntry? overlayEntry;
   final PdfViewerController _pdfViewerController = PdfViewerController();
   final GlobalKey<SearchToolbarState> _textSearchKey = GlobalKey();
   late bool _showToolbar;
@@ -26,6 +27,7 @@ class _FileViewerPage extends State<FileViewerPage> {
   late PdfDocument document;
   bool isReadAloud = false;
   String fileText = "";
+  final FlutterTts flutterTts = FlutterTts();
 
 
   /// Ensure the entry history of Text search.
@@ -39,9 +41,14 @@ class _FileViewerPage extends State<FileViewerPage> {
 
   @override
   void initState() {
+
     _showToolbar = false;
     _showScrollHead = true;
     openFile();
+    flutterTts.setLanguage('en-US');
+    flutterTts.setPitch(1);
+    flutterTts.setSpeechRate(0.5);
+
     super.initState();
   }
   /// Ensure the entry history of text search.
@@ -70,8 +77,8 @@ class _FileViewerPage extends State<FileViewerPage> {
 
   void _showContextMenu(context, details, clearSelection) {
     final OverlayState _overlayState = Overlay.of(context)!;
-    _overlayEntry = showContextMenu(context, details, clearSelection);
-    _overlayState.insert(_overlayEntry!);
+    overlayEntry = showContextMenu(context, details, clearSelection);
+    _overlayState.insert(overlayEntry!);
   }
 
   @override
@@ -115,7 +122,7 @@ class _FileViewerPage extends State<FileViewerPage> {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () async {backToHome(context);},
+          onPressed: () {backToHome(context);},
         ),
         title: null,
         actions: [IconButton(
@@ -177,17 +184,13 @@ class _FileViewerPage extends State<FileViewerPage> {
       backgroundColor: Colors.black12,
     );
   }
-  //     Future<List<int>> _readDocumentData(String name) async {
-  //   final ByteData data = await rootBundle.load('assets/$name');
-  //   return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-  // }
 
   Future<void> openFile() async {
     // bool isStorageAccessible = await checkPermission();
     bool isStorageAccessible =true;
     // Permission.manageExternalStorage.request();
     if(isStorageAccessible){
-        File file = File(widget.fileName.files.single.path!);
+        File file = File(widget.fileName);
         SfPdfViewer pdfView = SfPdfViewer.file(
           file,
           controller: _pdfViewerController,
@@ -195,10 +198,10 @@ class _FileViewerPage extends State<FileViewerPage> {
           currentSearchTextHighlightColor: Colors.deepOrange.withOpacity(0.5),
           otherSearchTextHighlightColor: Colors.orange.withOpacity(0.5),
           onTextSelectionChanged: (PdfTextSelectionChangedDetails details) {
-            if (details.selectedText == null && _overlayEntry != null) {
-              _overlayEntry!.remove();
-              _overlayEntry = null;
-            } else if (details.selectedText != null && _overlayEntry == null) {
+            if (details.selectedText == null && overlayEntry != null) {
+              overlayEntry!.remove();
+              overlayEntry = null;
+            } else if (details.selectedText != null && overlayEntry == null) {
               _showContextMenu(context, details, clearSelection);
             }
           },

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:DocuFind/utils/constants.dart';
+import 'package:docufind/utils/constants.dart';
 
 /// Signature for the [SearchToolbar.onTap] callback.
 typedef SearchTapCallback = void Function(Object item);
