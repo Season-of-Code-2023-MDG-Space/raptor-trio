@@ -19,9 +19,9 @@ To get started with this project, you will need to have Flutter installed on you
 
 Once you have Flutter installed, clone the repository and run the following command to install the required dependencies:
 
-`
+```
 flutter pub get
-`
+```
 
 
 ### Usage
