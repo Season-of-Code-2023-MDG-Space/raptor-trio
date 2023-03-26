@@ -4,13 +4,13 @@
 
 This is a PDF reader app built using Flutter, which provides the following features:
 
-*Search the PDF file for words, sentences, or phrases
+* Search the PDF file for words, sentences, or phrases
 
-*Google search the selected text
+* Google search the selected text
 
-*Convert selected text to speech
+* Convert selected text to speech
 
-*Local database to store the history of files opened
+* Local database to store the history of files opened
 
 
 ### Getting Started
