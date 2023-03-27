@@ -4,9 +4,9 @@
 
 ## Demo
 
-<div style="display: flex; align-items: center;">
-  <img src="assets/images/screenshots/homepage.jpg" alt="Image 1" style="float: left;">
-  <img src="assets/images/screenshots/overlay.jpg" alt="Image 2" style="float: right;">
+<div style="display: flex; align-items: center; justify-content: space-between">
+  <img src="assets/images/screenshots/homepage.jpg" alt="Image 1">
+  <img src="assets/images/screenshots/overlay.jpg" alt="Image 2">
 </div>
 
 ### Overview
