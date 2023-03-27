@@ -2,6 +2,18 @@
 
 ## DocuFind
 
+## Demo
+
+![Home Page](assets/images/screenshots/homepage.jpg)
+![File Opening Page](assets/images/screenshots/fileopener.jpg)
+![PDF View](assets/images/screenshots/pdfviewer.jpg)
+![Go to Page Widget](assets/images/screenshots/gotopage.jpg)
+![Search PDF Widget](assets/images/screenshots/searchpdf.jpg)
+![Selected text functions](assets/images/screenshots/overlay.jpg)
+
+
+### Overview
+
 This is a PDF reader app built using Flutter, which provides the following features:
 
 * Search the PDF file for words, sentences, or phrases
