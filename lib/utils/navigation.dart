@@ -1,6 +1,5 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:docufind/pages/home.dart';
 import 'package:docufind/pages/file_viewer.dart';
 
 
@@ -32,11 +31,7 @@ Future<void> openFilePage(context) async {
 
 
 Future<void> openFilePageFromHistory(context, String path, String filename) async {
-  try {
-    context.state.dbHelper.addItem(path, filename);
-  } catch(err) {
     context.state.dbHelper.updateItem(path, filename);
-  }
 
     Navigator.push(
       context,

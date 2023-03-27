@@ -1,11 +1,11 @@
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:file/file.dart';
+
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
   factory DatabaseHelper() => _instance;
 
   static Database? _db;
+  static const int _maxItems = 10;
 
   Future<Database> get db async {
     if (_db != null) {
@@ -19,14 +19,13 @@ class DatabaseHelper {
 
   Future<Database> initDb() async {
     final databasePath = await getDatabasesPath();
-    final path = databasePath.toString() + "/"+ "my_database.db";
-    print(path);
+    final path = databasePath.toString() + "/"+ "history.db";
     return await openDatabase(
       path,
       version: 1,
       onCreate: (db, version) async {
         await db.execute(
-          'CREATE TABLE my_table (path TEXT PRIMARY KEY, filename TEXT)',
+          'CREATE TABLE history (path TEXT PRIMARY KEY, filename TEXT, time INTEGER)',
         );
       },
     );
@@ -34,17 +33,33 @@ class DatabaseHelper {
 
   Future<int> addItem(String path, filename, ) async {
     final db = await this.db;
-    print(path+ " " + filename);
-    return await db.insert('my_table', {'path': path, 'filename': filename});
+    if (path.split('.').last == 'pdf') {
+      final count = Sqflite.firstIntValue(
+          await db.rawQuery('SELECT COUNT(*) FROM history'))!;
+      if (count >= _maxItems) {
+        final oldestItem = await db.query(
+            'history', orderBy: 'time ASC', limit: 1);
+        final oldestPath = oldestItem.first['path'];
+        await db.delete('history', where: 'path = ?', whereArgs: [oldestPath]);
+      }
+
+      return await db.insert(
+          'history', {'path': path, 'filename': filename, 'time': DateTime
+          .now()
+          .millisecondsSinceEpoch});
+    } else {
+      return 0;
+    }
   }
 
-  Future<int> updateItem(String path, String newFilename) async {
+  Future<int> updateItem(String path, String newFilename,) async {
     final db = await this.db;
-    return await db.update('my_table', {'filename': newFilename}, where: 'path = ?', whereArgs: [path]);
+    var updated = await db.update('history', {'filename': newFilename, 'time': DateTime.now().millisecondsSinceEpoch}, where: 'path = ?', whereArgs: [path]);
+    return updated;
   }
 
   Future<List<Map<String, dynamic>>> getItems() async {
     final db = await this.db;
-    return db.query('my_table');
+    return db.query('history', orderBy: "time");
   }
 }

@@ -3,42 +3,6 @@ import 'package:docufind/utils/navigation.dart';
 import 'package:docufind/widgets/app_bar.dart';
 import 'package:docufind/utils/constants.dart';
 import 'package:docufind/models/history.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:flutter/widgets.dart';
-import "package:path/path.dart";
-// class HomePage extends StatelessWidget {
-//
-//   const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return WillPopScope(
-//         onWillPop: () async {return true;},
-//         child: Scaffold(
-//       appBar: const CustomAppBar(
-//         title: Constants.appName,
-//       ),
-//       body: Container(
-//         alignment: Alignment.center,
-//         child: ElevatedButton(
-//           child: const Text('Open File', style: TextStyle(color:Colors.red,),),
-//           onPressed: () async {openFilePage(context);},
-//           style: ElevatedButton.styleFrom(
-//               alignment: Alignment.centerLeft,
-//               backgroundColor: Colors.black,
-//               foregroundColor: Colors.black,
-//               elevation: 10,
-//               shape:  RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(10),
-//                   side: BorderSide(color: Colors.red)
-//               )
-//           ),
-//         ),
-//         ),
-//       backgroundColor: Constants.bodyColor,
-//       ));
-//   }
-// }
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -88,9 +52,7 @@ class _HomePage extends State<HomePage> {
               builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                 if (snapshot.hasData) {
                   List<Map<String, dynamic>> items = snapshot.data!;
-                  print(items.length);
                   items = items.reversed.toList();
-                  print(items.length);
                   return GridView.count(
                     crossAxisCount: 2,
                     shrinkWrap: true,
@@ -100,7 +62,6 @@ class _HomePage extends State<HomePage> {
                           (index) =>
                               GestureDetector(
                                   onTap: (){
-                                    print("Container clicked");
                                     openFilePageFromHistory(
                                         this.context,
                                         items[index]['path'],
@@ -152,61 +113,3 @@ class _HomePage extends State<HomePage> {
     );
   }
 }
-
-
-
-//
-// import 'package:flutter/material.dart';
-//
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter App',
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Text('My App'),
-//           backgroundColor: Colors.blueAccent,
-//         ),
-//         body: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Image.asset(
-//                 'assets/images/flower.png',
-//                 height: 200,
-//               ),
-//               SizedBox(height: 20),
-//               Text(
-//                 'Welcome to my App!',
-//                 style: TextStyle(
-//                   fontSize: 24,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//               SizedBox(height: 20),
-//               ElevatedButton(
-//                 onPressed: () {},
-//                 child: Text(
-//                   'Press me',
-//                   style: TextStyle(fontSize: 16),
-//                 ),
-//                 style: ElevatedButton.styleFrom(
-//                   primary: Colors.blueAccent,
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(20),
-//                   ),
-//                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
