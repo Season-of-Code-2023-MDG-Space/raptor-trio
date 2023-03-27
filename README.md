@@ -5,8 +5,8 @@
 ## Demo
 
 <div style="display: flex; align-items: center;">
-  <img src="image1.jpg" alt="Image 1" style="float: left;">
-  <img src="image2.jpg" alt="Image 2" style="float: right;">
+  <img src="assets/images/screenshots/homepage.jpg" alt="Image 1" style="float: left;">
+  <img src="assets/images/screenshots/overlay.jpg" alt="Image 2" style="float: right;">
 </div>
 
 ### Overview
