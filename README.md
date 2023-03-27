@@ -4,9 +4,8 @@
 
 ## Demo
 
-![Home Page](assets/images/screenshots/homepage.jpg)
-![Selected text functions](assets/images/screenshots/overlay.jpg)
-
+<img src="assets/images/screenshots/homepage.jpg" alt="Home Page" style="float: left;">
+<img src="assets/images/screenshots/overlay.jpg" alt="Selected text functions" style="float: right;">
 
 ### Overview
 
